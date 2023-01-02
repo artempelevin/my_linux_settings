@@ -1,0 +1,215 @@
+# Назначенная клавиша MOD по умолчанию
+set $mod Mod4
+
+# Задаём имена рабочим столам (любая строка)
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+
+
+# Запускаемые приложения при старте
+exec --no-startup-id ~/.config/polybar/launch.sh    # Запуск polybar
+exec --no-startup-id picom  # Композитный менеджер (анимации, тени, плавность)
+exec --no-startup-id nitrogen --restore  # Установить последние обои
+exec --no-startup-id diodon # Запуск менеджера буфера обмена (появляется значок в трее)
+exec --no-startup-id nm-tray # Запуск менеджера сети (появляется значок в трее)
+exec --no-startup-id redshift -b 1.0:0.9 -t 6500:4500 -l 56:40  # Фоновая прога для изменения цвета монитора исходя из времени суток
+# Для переключения раскладки на Alt+Shift, потому что в Ubuntu-подобных всё с этим криво
+exec --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
+
+# Отлючение заголовков
+default_border pixel
+
+# Увеличение толщины рамки
+for_window [tiling] border pixel 3
+
+# --------------------------- Запуск программ --------------------------
+bindsym $mod+F1  			exec --no-startup-id firefox                # Браузер
+bindsym $mod+F12 			exec --no-startup-id speedcrunch            # Калькулятор
+bindsym $mod+t 	            exec --no-startup-id systemmonitor          # Диспетчер задач (минималистичный)
+bindsym $mod+Shift+t 	    exec --no-startup-id plasma-systemmonitor   # Диспетчер задач (подробный)
+bindsym $mod+p	            exec --no-startup-id pcmanfm                # Файловый менеджер
+bindsym Print 				exec --no-startup-id flameshot gui          # Скриншотер
+
+# Запуск лаунчера приложений (rofi)
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -theme ~/.config/rofi/themes/nord.rasi
+
+# Открытие терминала
+bindsym $mod+Return exec kitty
+
+# Регулирование громкости
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +2%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -2%
+bindsym XF86AudioMute exec --no-startup-id  "amixer -q sset Master,0 toggle"
+# ----------------------------------------------------------------------
+
+
+# Привязка приложений к конкретным рабочим столам
+# При открытии приложения, автоматически перемещаемся на его рабочий стол
+assign [class="firefox"] $ws1
+for_window [class="firefox"] workspace number $ws1
+
+assign [class="Geany"]   $ws2
+for_window [class="Geany"] workspace number $ws2
+
+assign [class="systemmonitor"]  $ws3
+for_window [class="systemmonitor"] workspace number $ws3
+assign [class="plasma-systemmonitor"]  $ws3
+for_window [class="plasma-systemmonitor"] workspace number $ws3
+
+assign [class="Pcmanfm"]  $ws4
+for_window [class="Pcmanfm"] workspace number $ws4
+
+assign [class="telegram-*"]  $ws5
+for_window [class="telegram-*"] workspace number $ws5
+
+# Запуск приложений в плавающем окне
+for_window [class="qt5ct"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="SpeedCrunch"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="systemmonitor"] floating enable
+for_window [class="plasma-systemmonitor"] floating enable
+
+# Шрифт для заголовков окон.
+font pango: JetBrains Medium 11
+
+# используйте эти клавиши для фокусировки, перемещения и изменения размера направления при достижении цели.
+# стрелки не очень удобны
+set $up l
+set $down k
+set $left j
+set $right semicolon
+
+# Используйте мышь+$mod, чтобы перетащить плавающие окна в нужное положение
+floating_modifier $mod
+
+# Убить сфокусированное окно
+bindsym $mod+Shift+q kill
+
+# Изменения фокуса окон
+bindsym $mod+$left focus left
+bindsym $mod+$down focus downS
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Кроме того, вы можете использовать клавиши курсора:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Перемещение сфокусированного окна
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Кроме того, вы можете использовать клавиши курсора:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Разделение в горизонтальной ориентации
+bindsym $mod+h split h
+
+# Разделение в горизонтальной ориентации
+bindsym $mod+v split v
+
+# Вход в полноэкранный режим для сфокусированного окна
+bindsym $mod+f fullscreen toggle
+
+# Изменение макета окна (штабелированный, с вкладками, переключение разделения)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Вкл/вкл плавающего режима для окна
+bindsym $mod+Shift+space floating toggle
+
+# Изменение фокуса между плитками/плавающими окнами
+bindsym $mod+space focus mode_toggle
+
+# Фокусируемся на окне-родителе
+bindsym $mod+a focus parent
+
+# Фокусируемся на окне-предке	(КЛАВИША ЗАНЯТА)
+#bindsym $mod+d focus child
+
+# Переместите текущее сфокусированное окно на "Блокнот"
+bindsym $mod+Shift+minus move scratchpad
+
+# Показать следующее окно блокнота или скрыть сфокусированное окно блокнота.
+# Если имеется несколько окон scratchpad, эта команда циклически проходит через них.
+bindsym $mod+minus scratchpad show
+
+# Переходим на нужный рабочий стол
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+
+# Переносим сфокусированное окно на нужный рабочий стол
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+
+
+# Перезагрузите конфигурационный файл
+bindsym $mod+Shift+c reload
+
+# Перезапустить i3
+bindsym $mod+Shift+r restart
+
+# Выйти из i3 (выведет вас из текущего X-сеанса)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# изменение размера окна (для этого вы также можете использовать мышь)
+mode "resize" {
+       	# Эти привязки срабатывают, как только вы входите в режим изменения размера
+
+        # Нажатие левой кнопки мыши приведет к уменьшению ширины окна.
+		# Нажатие правой кнопки мыши увеличит ширину окна.
+		# Нажатие вверх уменьшит высоту окна.
+		# Нажатие вниз увеличит высоту окна.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # те же привязки, но для клавиш со стрелками
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # вернуться в норм. режиму: Enter или Escape или $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+#Вход в режим "resize"
+bindsym $mod+r mode "resize"
+
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #5e81ac #eceff4 #8fbcbb   #5e81ac
+client.focused_inactive #333333 #5f676a #eceff4 #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #bf616a #eceff4 #bf616a   #bf616a
+client.placeholder      #000000 #0c0c0c #eceff4 #000000   #0c0c0c
+
+client.background       #eceff4
