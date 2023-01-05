@@ -33,3 +33,9 @@ apt install ttf-ubuntu-font-family --yes;
 apt install fonts-jetbrains-mono --yes;
 apt install fonts-font-awesome --yes;
 apt install fonts-powerline --yes;
+
+
+# Офисный пакет OnlyOffice
+wget https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb? -O onlyoffice-desktopeditors.deb
+apt install ./onlyoffice-desktopeditors.deb
+rm onlyoffice-desktopeditors.deb
