@@ -6,7 +6,7 @@
  *******************************************************************************/
 
 * {
-	font						: "JetBrainsMono Medium 11";
+	font						: "Ubuntu 10";
 	foreground					: #eceff4;
 	background-color			: #2e3440;
 	active-background			: #81a1c1;
