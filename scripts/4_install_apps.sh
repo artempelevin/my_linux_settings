@@ -1,6 +1,9 @@
 apt install zsh --yes;						# Удобная командная оболочка для замены sh и bash
 apt install xorg --yes;						# X сервер
 apt install i3-wm --yes;					# Тайловый оконный менеджер
+apt install i3lock --yes;					# Графический блокировщик экрана
+apt install xautolock --yes;				# Демон блокировки экрана
+apt install imagemagick --yes;				# Утилита для преобразования изображений из консоли
 apt install lightdm --yes;					# Менеджер входа в систему
 apt install picom --yes;					# Композитный менеджер (тени, анимации,эфеекты и т.д.)
 apt install polybar --yes;					# Легковесная панель задач
@@ -22,6 +25,7 @@ apt install diodon --yes;					# Буфер обмена + значок в тре
 apt install mate-system-monitor --yes;		# Диспетчер задач
 apt install network-manager-gnome --yes;	# Набор библиотек для работы сети + значок в трее
 apt install unzip --yes;					# Консольная утилита для архивирования/разархивирования .zip файлов
+apt install unrar --yes;					# Консольная утилита для архивирования/разархивирования .rar файлов
 apt install engrampa --yes;					# Менеджер архивов
 apt install geany --yes;					# Мощный текстовый редактор
 apt install hardinfo --yes;					# Утилита для просмотра сведний о железе
@@ -39,3 +43,7 @@ apt install fonts-powerline --yes;
 wget https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb? -O onlyoffice-desktopeditors.deb
 apt install ./onlyoffice-desktopeditors.deb
 rm onlyoffice-desktopeditors.deb
+
+
+# Установка oh my zsh
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
