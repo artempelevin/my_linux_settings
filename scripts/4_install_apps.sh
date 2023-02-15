@@ -14,8 +14,8 @@ apt install qt5ct --yes;					        # Графическое приложени
 apt install qt5-style-plugins --yes;		  # Плагин, позволяющий Qt приложениям выглядеть идентично GTK 2
 apt install pulseaudio --yes;				      # Набор библиотек для корректной работы звука в системе
 apt install pavucontrol --yes;				    # Графическое приложения для управления звуком в системе
-apt install redshift --yes;					      # Управление подцветкой монитора в зависимости от времени суток
 apt install pcmanfm --yes;					      # Файловый менеджер
+apt install filezilla --yes;              # Свободный FTP-клиент с
 apt install firefox-esr --yes;				    # Браузер
 apt install telegram-desktop --yes;			  # Мессенджер
 apt install nitrogen --yes;					      # Менеджер обоев рабочего стола
@@ -24,12 +24,17 @@ apt install flameshot --yes;				      # Инструмент для создан
 apt install diodon --yes;					        # Буфер обмена + значок в трее
 apt install mate-system-monitor --yes;		# Диспетчер задач
 apt install network-manager-gnome --yes;	# Набор библиотек для работы сети + значок в трее
-apt install unzip --yes;					        # Консольная утилита для архивирования/разархивирования .zip файлов
-apt install unrar --yes;					        # Консольная утилита для архивирования/разархивирования .rar файлов
 apt install engrampa --yes;					      # Менеджер архивов
 apt install geany --yes;					        # Мощный текстовый редактор
 apt install hardinfo --yes;					      # Утилита для просмотра сведений о железе
 apt install eom --yes;						        # Программа для просмотра изображений
+
+# Консольные программы/утилиты
+apt install unzip --yes;					        # Консольная утилита для архивирования/разархивирования .zip файлов
+apt install unrar --yes;					        # Консольная утилита для архивирования/разархивирования .rar файлов
+apt install curl --yes;                   # Утилита для взаимодействия с различными серверами по множеству протоколов
+apt install wget --yes;                   # Утилита для загрузки файлов по сети
+apt install redshift --yes;					      # Управление подцветкой монитора в зависимости от времени суток
 
 
 # Шрифты
